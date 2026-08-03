@@ -15,6 +15,14 @@ app.add_middleware(
 
 app.include_router(review_router)
 
+@app.get("/")
+async def root():
+    return {
+        "message": "Welcome to the AI Code Reviewer API!",
+        "health_check": "/health",
+        "docs": "/docs"
+    }
+
 @app.get("/health")
 async def health_check():
     return {"status": "ok"}
