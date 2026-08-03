@@ -2,17 +2,22 @@
 
 A stunning, intelligent code review tool powered by the Groq API. Paste a code snippet, and get instant, structured, and color-coded feedback on **Bugs**, **Style Violations**, and **Security Vulnerabilities**.
 
+## Live Demo
+🚀 **Try it out here:** [https://ai-code-reviewer-validator.vercel.app/](https://ai-code-reviewer-validator.vercel.app/)
+
 ## Features
 - **Lightning Fast LLM Analysis**: Powered by Groq's high-speed inference (using `llama-3.3-70b-versatile`, `llama-3.1-8b-instant`, and `gemma2-9b-it`).
 - **Resilient Fallback**: Automatically cascades through models if API quota limits are hit.
 - **Strict Pydantic Validation**: LLM outputs are rigorously validated against a JSON schema. If the model hallucinates or provides malformed JSON, the backend automatically issues a strict retry prompt before gracefully erroring out.
 - **Premium UI**: A sleek, modern, glassmorphic dark-mode frontend built in React (Vite).
 - **Zero Database MVP**: Fully stateless—no user tracking, no code persistence.
+- **Production Hardened**: Features IP-based rate limiting and strict CORS policies to prevent abuse and protect LLM quotas.
 
 ## Tech Stack
-- **Frontend**: React, Vite, Vanilla CSS (Custom Properties, Flexbox/Grid)
-- **Backend**: FastAPI, Uvicorn, Pydantic
+- **Frontend**: React, Vite, Vanilla CSS
+- **Backend**: FastAPI, Uvicorn, Pydantic, SlowAPI (Rate Limiting)
 - **AI**: Groq Python SDK
+- **Deployment**: Vercel (Frontend), Render (Backend)
 
 ---
 
