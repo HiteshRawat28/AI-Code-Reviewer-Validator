@@ -1,16 +1,18 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, Request
 from app.schemas.review_schema import ReviewRequest, ReviewResponse
 from app.services.review_service import generate_and_validate_review
+from app.core.rate_limit import limiter
 
 router = APIRouter(prefix="/api", tags=["Review"])
 
 @router.post("/review", response_model=ReviewResponse)
-async def create_review(request: ReviewRequest):
+@limiter.limit("5/minute")
+async def create_review(payload: ReviewRequest, request: Request):
     """
     Accepts a code snippet, validates it, and generates an AI-powered code review.
     """
     # 1. Edge Case: Empty code
-    if not request.code or not request.code.strip():
+    if not payload.code or not payload.code.strip():
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
             detail="Code snippet cannot be empty."
@@ -18,7 +20,7 @@ async def create_review(request: ReviewRequest):
     
     # 2. Edge Case: Code too long
     # We set a reasonable limit to prevent context window overflow or abuse (e.g., 50k characters)
-    if len(request.code) > 50000:
+    if len(payload.code) > 50000:
         raise HTTPException(
             status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
             detail="Code snippet is too large. Please submit a smaller snippet."
@@ -26,7 +28,7 @@ async def create_review(request: ReviewRequest):
 
     # 3. Process the review
     try:
-        review_result = await generate_and_validate_review(request.code, request.language)
+        review_result = await generate_and_validate_review(payload.code, payload.language)
         return review_result
     except ValueError as e:
         # Expected errors (API quota, parsing failures after retry)
