@@ -1,0 +1,111 @@
+.category-card {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: var(--transition);
+  border-top: 4px solid transparent;
+}
+
+.category-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* Theme Accents */
+.theme-bug { border-top-color: var(--color-bug); }
+.theme-style { border-top-color: var(--color-style); }
+.theme-security { border-top-color: var(--color-security); }
+
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 0.75rem;
+}
+
+.category-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.issue-count {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.empty-state {
+  padding: 1rem;
+  text-align: center;
+  color: hsl(120, 50%, 65%);
+  background: rgba(120, 200, 120, 0.05);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+
+.issues-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.issue-item {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  border-left: 3px solid transparent;
+}
+
+.theme-bug .issue-item { border-left-color: rgba(251, 113, 133, 0.5); }
+.theme-style .issue-item { border-left-color: rgba(56, 189, 248, 0.5); }
+.theme-security .issue-item { border-left-color: rgba(251, 146, 60, 0.5); }
+
+.issue-meta {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.severity-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.severity-high, .severity-critical {
+  background: rgba(239, 68, 68, 0.2);
+  color: hsl(0, 100%, 75%);
+}
+
+.severity-medium {
+  background: rgba(245, 158, 11, 0.2);
+  color: hsl(40, 100%, 65%);
+}
+
+.severity-low {
+  background: rgba(59, 130, 246, 0.2);
+  color: hsl(215, 100%, 75%);
+}
+
+.line-number {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+.issue-desc {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+}

@@ -1,0 +1,26 @@
+{
+  "bugs": [
+    {
+      "category": "bug",
+      "severity": "high",
+      "description": "Potential index out of bounds if array is empty.",
+      "line_number": 42
+    }
+  ],
+  "style_issues": [
+    {
+      "category": "style",
+      "severity": "low",
+      "description": "Variables should use camelCase naming convention.",
+      "line_number": 12
+    }
+  ],
+  "security_issues": [
+    {
+      "category": "security",
+      "severity": "critical",
+      "description": "SQL Injection vulnerability: user input concatenated directly into query.",
+      "line_number": 88
+    }
+  ]
+}
